@@ -80,14 +80,11 @@ cmake_parse_arguments(PY "" "${PY_VARS}" "" ${PY_OUT})
 separate_arguments(PY_CFLAGS)
 separate_arguments(PY_LDFLAGS)
 
-if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/lib64")
-    set(LIB_APRILTAG_PATH ${CMAKE_CURRENT_SOURCE_DIR}/lib64)   
-endif()
+set(LIB_APRILTAG_PATH ${CMAKE_CURRENT_SOURCE_DIR}/${CMAKE_INSTALL_LIBDIR})
 
-if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/lib")
-    set(LIB_APRILTAG_PATH ${CMAKE_CURRENT_SOURCE_DIR}/lib)   
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/build")
+       set(LIB_APRILTAG_PATH ${CMAKE_CURRENT_SOURCE_DIR}/build/${CMAKE_INSTALL_LIBDIR})
 endif()
-
 
 foreach(X detect py_type)
 add_custom_command(OUTPUT ${PROJECT_BINARY_DIR}/apriltag_${X}.docstring.h
